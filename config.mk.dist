@@ -1,0 +1,3 @@
+CC          := gcc
+WINDOWS_CC  := i686-w64-mingw-gcc
+
