@@ -2,33 +2,54 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+static SDL_Window *window;
 
-void handle(SDL_Window *window, SDL_Event event)
-{
+void on_event(SDL_Event event) {
     printf("Event type: %i\n", event.type);
 }
 
-int main(int argc, char *argv[])
-{
+void on_loop() {
+    // ...
+}
+
+void on_render() {
+    // ...
+}
+
+// ===== Boilerplate-y things. =====
+
+void init() {
     SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO);
 
-    SDL_Window *window =
-        SDL_CreateWindow("Faulty", SDL_WINDOWPOS_UNDEFINED,
-                         SDL_WINDOWPOS_UNDEFINED, 800, 600, 0);
+    window = SDL_CreateWindow("Faulty", SDL_WINDOWPOS_UNDEFINED,
+                              SDL_WINDOWPOS_UNDEFINED, 800, 600, 0);
+}
+
+void cleanup() {
+    SDL_Quit();
+}
+
+int main(int argc, char *argv[]) {
+    init();
 
     SDL_Event event;
+    bool running = true;
 
-    while(true) {
-        if(SDL_PollEvent(&event)) {
+    while (running) {
+        while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
+                running = false;
                 break;
             }
 
-            handle(window, event);
+            on_event(event);
         }
+
+        on_loop();
+        on_render();
     }
 
-    SDL_Quit();
+    cleanup();
 
     return 0;
 }
