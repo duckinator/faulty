@@ -9,4 +9,9 @@ enum {
     TILE_TYPE_ITEM
 };
 
+typedef struct tile_s {
+    int id;
+    int type;
+} Tile;
+
 #endif
