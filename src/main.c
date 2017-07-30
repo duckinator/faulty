@@ -4,6 +4,8 @@
 
 static SDL_Window *window;
 
+// ===== Gameplay events. =====
+
 void on_event(SDL_Event event) {
     printf("Event type: %i\n", event.type);
 }
@@ -16,21 +18,24 @@ void on_render() {
     // ...
 }
 
-// ===== Boilerplate-y things. =====
 
-void init() {
+// ===== Non-gameplay events. =====
+
+void on_init() {
     SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO);
 
     window = SDL_CreateWindow("Faulty", SDL_WINDOWPOS_UNDEFINED,
                               SDL_WINDOWPOS_UNDEFINED, 800, 600, 0);
 }
 
-void cleanup() {
+void on_cleanup() {
     SDL_Quit();
 }
 
+// ===== Main loop. =====
+
 int main(int argc, char *argv[]) {
-    init();
+    on_init();
 
     SDL_Event event;
     bool running = true;
@@ -49,7 +54,7 @@ int main(int argc, char *argv[]) {
         on_render();
     }
 
-    cleanup();
+    on_cleanup();
 
     return 0;
 }
