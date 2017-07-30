@@ -21,11 +21,19 @@ void on_render() {
 
 // ===== Non-gameplay events. =====
 
-void on_init() {
-    SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO);
+bool on_init() {
+    if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) < 0) {
+        return false;
+    }
 
     window = SDL_CreateWindow("Faulty", SDL_WINDOWPOS_UNDEFINED,
                               SDL_WINDOWPOS_UNDEFINED, 800, 600, 0);
+
+    if (window == NULL) {
+        return false;
+    }
+
+    return true;
 }
 
 void on_cleanup() {
@@ -35,7 +43,10 @@ void on_cleanup() {
 // ===== Main loop. =====
 
 int main(int argc, char *argv[]) {
-    on_init();
+    if(on_init() == false) {
+        on_cleanup();
+        return -1;
+    }
 
     SDL_Event event;
     bool running = true;
