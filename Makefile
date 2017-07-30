@@ -29,7 +29,8 @@ override LINKER_FLAGS += -lSDL2
 
 # ===== Targets =====
 
-all: prereqs linux windows
+# WINDOWS BUILDS ARE BROKEN. RIP.
+all: prereqs linux #windows
 
 prereqs: config.mk
 	@mkdir -p ${LINUX_BUILD_DIR}
@@ -42,8 +43,9 @@ ${LINUX_EXE}:
 
 windows: prereqs ${WINDOWS_EXE}
 
+# BROKEN
 ${WINDOWS_EXE}:
-	# ???
+	${WINDOWS_CC} ${COMPILER_FLAGS} ${LINKER_FLAGS} ${SRCFILES} -o ${WINDOWS_EXE}
 
 
 config.mk:
