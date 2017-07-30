@@ -1,8 +1,4 @@
-#include <SDL2/SDL.h>
-#include <stdio.h>
-#include <stdbool.h>
-
-#include <faulty/constants.h>
+#include <faulty.h>
 
 static SDL_Window *window = NULL;
 
