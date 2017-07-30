@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-static SDL_Window *window;
+static SDL_Window *window = NULL;
 
 // ===== Gameplay events. =====
 
