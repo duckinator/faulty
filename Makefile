@@ -21,11 +21,14 @@ SRCFILES := $(shell find 'src' -name '*.c')
 
 # ===== Flags =====
 
+SDL2_CFLAGS  := $(shell sdl2-config --cflags)
+SDL2_LDFLAGS := $(shell sdl2-config --static-libs)
+
 # TODO: Figure out if these are correct. I copypasta'd them from https://github.com/duckinator/dux/blob/main/Makefile
 #       and removed things that were clearly specific to operating systems.
-override COMPILER_FLAGS += -std=c99 -Wall -g -Iinclude -Wextra -Wunused -Wformat=2 -Winit-self -Wmissing-include-dirs -Wstrict-overflow=4 -Wfloat-equal -Wwrite-strings -Wconversion -Wundef -Wtrigraphs -Wunused-parameter -Wunknown-pragmas -Wcast-align -Wswitch-enum -Waggregate-return -Wmissing-noreturn -Wmissing-format-attribute -Wpacked -Wredundant-decls -Wunreachable-code -Winline -Winvalid-pch -Wdisabled-optimization -Wbad-function-cast -Wunused-function -Werror=implicit-function-declaration -gdwarf-2 -pedantic-errors
+override COMPILER_FLAGS += -std=c99 -Wall -g -Iinclude -Wextra -Wunused -Wformat=2 -Winit-self -Wmissing-include-dirs -Wstrict-overflow=4 -Wfloat-equal -Wwrite-strings -Wconversion -Wundef -Wtrigraphs -Wunused-parameter -Wunknown-pragmas -Wcast-align -Wswitch-enum -Waggregate-return -Wmissing-noreturn -Wmissing-format-attribute -Wpacked -Wredundant-decls -Wunreachable-code -Winline -Winvalid-pch -Wdisabled-optimization -Wbad-function-cast -Wunused-function -Werror=implicit-function-declaration -gdwarf-2 -pedantic-errors ${SDL2_CFLAGS}
 
-override LINKER_FLAGS += -lSDL2
+override LINKER_FLAGS += ${SDL2_LDFLAGS}
 
 # ===== Targets =====
 
