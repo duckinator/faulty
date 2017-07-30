@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+#include <faulty/constants.h>
+
 static SDL_Window *window = NULL;
 
 // ===== Gameplay events. =====
@@ -27,7 +29,7 @@ bool on_init() {
     }
 
     window = SDL_CreateWindow("Faulty", SDL_WINDOWPOS_UNDEFINED,
-                              SDL_WINDOWPOS_UNDEFINED, 800, 600, 0);
+                              SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 
     if (window == NULL) {
         return false;
