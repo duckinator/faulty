@@ -7,5 +7,7 @@
 
 #include <faulty/constants.h>
 #include <faulty/tile.h>
+#include <faulty/map.h>
+#include <faulty/debug.h>
 
 #endif

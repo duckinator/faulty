@@ -10,8 +10,8 @@ enum {
 };
 
 typedef struct tile_s {
-    int id;
-    int type;
+    uint8_t id;
+    uint8_t type;
 } Tile;
 
 #endif
