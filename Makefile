@@ -23,8 +23,6 @@ override CFLAGS += -std=c99 -Wall -g -Iinclude -Wextra -Wunused -Wformat=2 -Wini
 
 all: linux windows
 
-# TODO: Check if lines 21-31 are even fucking valid.
-
 linux: config.mk ${LINUX_NAME}
 
 ${LINUX_NAME}:
