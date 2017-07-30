@@ -9,8 +9,8 @@ include config.mk
 
 # TODO: I'm making a lot of assumptions about Windows cross-compiling
 #       because I have no idea what I'm doing. Probably worth checking them.
-LINUX_NAME=faulty
-WINDOWS_NAME=faulty.exe
+LINUX_EXE=faulty
+WINDOWS_EXE=faulty.exe
 
 SOURCE_SUFFIXES := '(' -name '*.c' -o -name '*.asm' ')'
 SRCFILES := $(shell find 'src' ${SOURCE_SUFFIXES})
@@ -23,14 +23,14 @@ override CFLAGS += -std=c99 -Wall -g -Iinclude -Wextra -Wunused -Wformat=2 -Wini
 
 all: linux windows
 
-linux: config.mk ${LINUX_NAME}
+linux: config.mk ${LINUX_EXE}
 
-${LINUX_NAME}:
+${LINUX_EXE}:
 	# ???
 
-windows: config.mk ${WINDOWS_NAME}
+windows: config.mk ${WINDOWS_EXE}
 
-${WINDOWS_NAME}:
+${WINDOWS_EXE}:
 	# ???
 
 
