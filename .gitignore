@@ -45,6 +45,7 @@ config.mk
 *.x86_64
 *.hex
 build/
+release/
 
 
 # Debug files

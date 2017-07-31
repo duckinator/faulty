@@ -41,6 +41,9 @@ WINDOWS_LINKER_FLAGS   := ${LINKER_FLAGS} ${WINDOWS_SDL2_LDFLAGS}
 
 # ===== Targets =====
 
+release: all test
+	./bin/release.sh
+
 all: prereqs linux windows
 
 prereqs: config.mk
@@ -69,5 +72,6 @@ clean:
 	@find ./src -name '*.o' -delete
 	@find ./src -name '*.d' -delete
 	@rm -rf ${BUILD_DIR}
+	@rm -rf release
 
 .PHONY: all linux windows clean test todo
