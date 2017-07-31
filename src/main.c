@@ -4,6 +4,7 @@ Map *map = NULL;
 uint8_t map_id = 0;
 
 static SDL_Window *window = NULL;
+static SDL_Renderer *renderer = NULL;
 
 // ===== Gameplay events. =====
 
@@ -48,8 +49,9 @@ bool on_init() {
 }
 
 void on_cleanup() {
-    free(map);
+    SDL_DestroyWindow(window);
 
+    free(map);
     SDL_Quit();
 }
 
@@ -78,6 +80,8 @@ int main(int argc, char *argv[]) {
 
         on_loop(map);
         on_render(map);
+
+        SDL_Delay(200); // Avoid 100% CPU usage.
     }
 
     on_cleanup(map);
