@@ -4,15 +4,15 @@ static SDL_Window *window = NULL;
 
 // ===== Gameplay events. =====
 
-void on_event(SDL_Event event) {
+void on_event(Map *map, SDL_Event event) {
     printf("Event type: %i\n", event.type);
 }
 
-void on_loop() {
+void on_loop(Map *map) {
     // ...
 }
 
-void on_render() {
+void on_render(Map *map) {
     // ...
 }
 
@@ -34,20 +34,30 @@ bool on_init() {
     return true;
 }
 
-void on_cleanup() {
+void on_cleanup(Map *map) {
+    free(map);
+
     SDL_Quit();
 }
 
 // ===== Main loop. =====
 
 int main(int argc, char *argv[]) {
-    if(on_init() == false) {
-        on_cleanup();
+    SDL_Event event;
+    bool running = true;
+
+    Map *map = malloc(sizeof(map));
+
+    if (map == NULL) {
+        fprintf(stderr, "malloc(): failed to allocate memory for map.");
+        on_cleanup(map);
         return -1;
     }
 
-    SDL_Event event;
-    bool running = true;
+    if(on_init() == false) {
+        on_cleanup(map);
+        return -1;
+    }
 
     while (running) {
         while (SDL_PollEvent(&event)) {
@@ -56,14 +66,14 @@ int main(int argc, char *argv[]) {
                 break;
             }
 
-            on_event(event);
+            on_event(map, event);
         }
 
-        on_loop();
-        on_render();
+        on_loop(map);
+        on_render(map);
     }
 
-    on_cleanup();
+    on_cleanup(map);
 
     return 0;
 }
