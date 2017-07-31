@@ -57,7 +57,7 @@ bool load_map(Map *map, uint8_t map_id) {
             tile = &map->tiles[idx];
 //tile->tile_id = 3; tile->tile_type = 4;
 printf("lol?\n");
-printf("%hhu:%hhu\n", &tile->tile_id, &tile->tile_type);
+printf("%hhu:%hhu\n", tile->tile_id, tile->tile_type);
 printf("meep\n");
             // TODO: Check if there are enough rows/columns in the map file.
             fscanf(file_handle, "%hhu:%hhu ", &tile->tile_id, &tile->tile_type);
