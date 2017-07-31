@@ -9,7 +9,7 @@ static SDL_Renderer *renderer = NULL;
 // ===== Gameplay events. =====
 
 void on_event(SDL_Event event) {
-    DEBUG_PRINTF("Event type: %i\n", event.type)
+    DEBUG_PRINTF("Event type: %i\n", event.type);
 }
 
 void on_loop() {
