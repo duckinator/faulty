@@ -22,13 +22,18 @@ bool load_map(Map *map, uint8_t map_id) {
         return false;
     }
 
-    uint8_t idx = 0;
+    uint32_t idx = 0;
     for (uint8_t col = 0; col < TILES_PER_COL; col++) {
         for (uint8_t row = 0; row < TILES_PER_ROW; row++) {
+            if (idx > (sizeof(Tile) * TILES_PER_COL * TILES_PER_ROW)) {
+                ERROR_PRINTF("Trying to load too many tiles in from map #%u", map_id);
+                return false;
+            }
+
             tile = &map->tiles[idx];
 
             fscanf(file_handle, "%hhu:%hhu ", &(tile->tile_id), &(tile->tile_type));
-
+printf("%u: %u:%u\n", idx, tile->tile_id, tile->tile_type);
             idx++;
         }
     }
