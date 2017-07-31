@@ -4,28 +4,43 @@ A game about a robot who just wants to go home.
 
 ## Running
 
-Windows: no dependencies.
+Windows: run `faulty.exe`. There are no dependencies.
 
-Linux: requires SDL2.
+Linux: install SDL2, then run the `faulty` executable.
 
 ## Building
 
-For Manjaro Linux, and probably other ArchLinux-based distros:
+All of the build instructions assume you're using Manjaro Linux.
 
-```
-$ sudo pacman -S base-devel mingw-w64-gcc sdl2 wine
-$ yaourt -S mingw-w64 mingw-w64-sdl2 mingw-w64-sdl2_gfx mingw-w64-sdl2_image mingw-w64-sdl2_mixer mingw-w64-sdl2_net
-``
+They'll probably work on any ArchLinux-based distro, but I haven't
+confirmed that.
 
-The mingw stuff is for cross-compiling for Windows, and Wine is for
-testing the Windows executables.
-
-There's also an `mingw-w64-sdl2_ttf`, but hopefully that's not needed
-because it has a circular dependency.
-
-Requires:
+Build requirements:
 
 * GNU Make
 * GCC
 * SDL 2
 * GCC cross-compiler setup, if you're building for Windows from Linux
+
+### Native Linux builds
+
+```
+$ sudo pacman -S base-devel sdl2
+$ make linux
+```
+
+### Windows builds, from Linux
+
+Cross-compiling for Windows requires a mingw cross-compiling toolchain,
+and you can (kind of) test it using Wine.
+
+First, install `yaourt` (or equivalent), then:
+
+```
+$ yaourt -S base-devel sdl2 wine mingw-w64 mingw-w64-sdl2 mingw-w64-sdl2_gfx mingw-w64-sdl2_image mingw-w64-sdl2_mixer mingw-w64-sdl2_net
+``
+
+There's also an `mingw-w64-sdl2_ttf`, but hopefully that's not needed
+because it has a circular dependency.
+
+
