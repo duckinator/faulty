@@ -1,7 +1,20 @@
 #include <faulty.h>
 
-void clear_map(Map *map) {
+bool clear_map(Map *map) {
+    if (map == NULL) {
+        ERROR_PRINT("map is null");
+        return false;
+    }
+
     memset(map, 0, sizeof(Map));
+    //memset(map->tiles, 0, sizeof(Tile) * TILES_PER_MAP);
+    for (uint32_t idx = 0; idx < TILES_PER_MAP; idx++) {
+        printf("%p\n", &map->tiles[idx]);
+        //map->tiles[idx].tile_id = -1;
+        //map->tiles[idx].tile_id = -1;
+    }
+
+    return true;
 }
 
 Map *new_map() {
@@ -24,7 +37,11 @@ bool load_map(Map *map, uint8_t map_id) {
 
     Tile *tile = NULL;
 
-    clear_map(map);
+    printf("wat\n");
+    if (clear_map(map) == false) {
+        return false;
+    }
+    printf("fuck you\n");
 
     FILE *file_handle = fopen(file_path, "r");
 
@@ -41,9 +58,13 @@ bool load_map(Map *map, uint8_t map_id) {
             }
 
             tile = &map->tiles[idx];
-
-            fscanf(file_handle, "%hhu:%hhu ", &(tile->tile_id), &(tile->tile_type));
-
+//tile->tile_id = 3; tile->tile_type = 4;
+printf("lol?\n");
+printf("%hhu:%hhu\n", &tile->tile_id, &tile->tile_type);
+printf("meep\n");
+            // TODO: Check if there are enough rows/columns in the map file.
+            fscanf(file_handle, "%hhu:%hhu ", &tile->tile_id, &tile->tile_type);
+printf("idx=%u, %u:%u\n", idx, tile->tile_id, tile->tile_type);
             idx++;
         }
     }
