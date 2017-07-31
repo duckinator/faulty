@@ -4,6 +4,16 @@ void clear_map(Map *map) {
     memset(map, 0, sizeof(Map));
 }
 
+Map *new_map() {
+    Map *map = malloc(sizeof(Map));
+    memset(map, 0, sizeof(Map));
+
+    map->tiles = malloc(sizeof(Tile) * TILES_PER_MAP);
+    memset(map->tiles, 0, sizeof(Tile) * TILES_PER_MAP);
+
+    return map;
+}
+
 bool load_map(Map *map, uint8_t map_id) {
     // ASSUMPTION: map_id length is 3 characters max, because it's a uint8_t.
     //             If map_id's type is changed, that value changes, too.

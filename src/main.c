@@ -40,14 +40,14 @@ bool on_init() {
 
     // Set up map.
     map_id = 0;
-    Map *map = malloc(sizeof(Map));
+    Map *map = new_map();
 
     if (map == NULL) {
         ERROR_PRINT("Failed to allocate memory for map.\n");
         return false;
     }
 
-    load_map(map, 0);
+    load_map(map, map_id);
 
     return true;
 }
