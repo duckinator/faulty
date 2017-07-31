@@ -33,7 +33,7 @@ bool load_map(Map *map, uint8_t map_id) {
             tile = &map->tiles[idx];
 
             fscanf(file_handle, "%hhu:%hhu ", &(tile->tile_id), &(tile->tile_type));
-printf("%u: %u:%u\n", idx, tile->tile_id, tile->tile_type);
+
             idx++;
         }
     }

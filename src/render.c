@@ -10,7 +10,8 @@ void render_map(SDL_Renderer *renderer, Map *map) {
             //if (map->tiles[idx].tile_type == TILE_TYPE_NONE) {
             if (true) {
                 printf("<idx %u>\n", idx);
-                map->tiles[5].tile_type;
+                uint8_t x = map->tiles[0].tile_type;
+                printf("???\n");
                 printf("%u\n", map->tiles[0].tile_type);
                 printf("</idx>\n");
                 idx++;
