@@ -6,12 +6,12 @@ bool clear_map(Map *map) {
         return false;
     }
 
-    memset(map, 0, sizeof(Map));
+    //memset(map, 0, sizeof(Map));
     //memset(map->tiles, 0, sizeof(Tile) * TILES_PER_MAP);
     for (uint32_t idx = 0; idx < TILES_PER_MAP; idx++) {
+        map->tiles[idx].tile_id = 0;
+        map->tiles[idx].tile_id = 0;
         printf("%p\n", &map->tiles[idx]);
-        //map->tiles[idx].tile_id = -1;
-        //map->tiles[idx].tile_id = -1;
     }
 
     return true;
@@ -22,7 +22,7 @@ Map *new_map() {
     memset(map, 0, sizeof(Map));
 
     map->tiles = malloc(sizeof(Tile) * TILES_PER_MAP);
-    memset(map->tiles, 0, sizeof(Tile) * TILES_PER_MAP);
+//    memset(map->tiles, 0, sizeof(Tile) * TILES_PER_MAP);
 
     return map;
 }
