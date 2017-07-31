@@ -1,7 +1,7 @@
 #ifndef FAULTY_CONSTANTS_H
 #define FAULTY_CONSTANTS_H
 
-#define MAP_DIR "maps/"
+#define MAP_DIR "./maps/"
 
 #define MAP_WIDTH  40
 #define MAP_HEIGHT 40

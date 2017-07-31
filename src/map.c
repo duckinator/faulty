@@ -25,7 +25,7 @@ bool load_map(Map *map, uint8_t map_id) {
     uint8_t idx = 0;
     for (uint8_t col = 0; col < TILES_PER_COL; col++) {
         for (uint8_t row = 0; row < TILES_PER_ROW; row++) {
-            *tile = map->tiles[idx];
+            tile = &map->tiles[idx];
 
             fscanf(file_handle, "%hhu:%hhu ", &(tile->tile_id), &(tile->tile_type));
 

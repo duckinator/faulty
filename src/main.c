@@ -19,7 +19,7 @@ void on_loop() {
 }
 
 void on_render() {
-    //render_map(map, window);
+    render_map(renderer, map);
 }
 
 
@@ -46,6 +46,8 @@ bool on_init() {
         ERROR_PRINT("Failed to allocate memory for map.\n");
         return false;
     }
+
+    load_map(map, 0);
 
     return true;
 }

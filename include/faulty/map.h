@@ -5,4 +5,8 @@ typedef struct map_s {
     Tile tiles[TILES_PER_MAP];
 } Map;
 
+void clear_map(Map *map);
+bool load_map(Map *map, uint8_t map_id);
+
+
 #endif
