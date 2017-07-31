@@ -20,7 +20,7 @@ bool load_map(Map *map, char *file) {
         for (uint8_t row = 0; row < TILES_PER_ROW; row++) {
             *tile = map->tiles[idx];
 
-            fscanf(file_handle, "%d:%d ", &(tile->tile_id), &(tile->tile_type));
+            fscanf(file_handle, "%hhu:%hhu ", &(tile->tile_id), &(tile->tile_type));
 
             idx++;
         }

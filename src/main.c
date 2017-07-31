@@ -1,18 +1,21 @@
 #include <faulty.h>
 
+Map *map = NULL;
+uint8_t map_id = 0;
+
 static SDL_Window *window = NULL;
 
 // ===== Gameplay events. =====
 
-void on_event(Map *map, SDL_Event event) {
+void on_event(SDL_Event event) {
     printf("Event type: %i\n", event.type);
 }
 
-void on_loop(Map *map) {
+void on_loop() {
     // ...
 }
 
-void on_render(Map *map) {
+void on_render() {
     // ...
 }
 
@@ -31,10 +34,19 @@ bool on_init() {
         return false;
     }
 
+    // Set up map.
+    map_id = 0;
+    Map *map = malloc(sizeof(Map));
+
+    if (map == NULL) {
+        fprintf(stderr, "malloc(): failed to allocate memory for map.");
+        return false;
+    }
+
     return true;
 }
 
-void on_cleanup(Map *map) {
+void on_cleanup() {
     free(map);
 
     SDL_Quit();
@@ -46,16 +58,9 @@ int main(int argc, char *argv[]) {
     SDL_Event event;
     bool running = true;
 
-    Map *map = malloc(sizeof(map));
-
-    if (map == NULL) {
-        fprintf(stderr, "malloc(): failed to allocate memory for map.");
-        on_cleanup(map);
-        return -1;
-    }
-
     if(on_init() == false) {
-        on_cleanup(map);
+        fprintf(stderr, "on_init(): failed to initialize game; exiting.");
+        on_cleanup();
         return -1;
     }
 
@@ -66,7 +71,7 @@ int main(int argc, char *argv[]) {
                 break;
             }
 
-            on_event(map, event);
+            on_event(event);
         }
 
         on_loop(map);
