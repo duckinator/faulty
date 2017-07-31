@@ -17,7 +17,7 @@ void on_loop() {
 }
 
 void on_render() {
-    render_map(map, window);
+    //render_map(map, window);
 }
 
 
