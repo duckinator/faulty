@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
         SDL_Delay(200); // Avoid 100% CPU usage.
     }
 
-    on_cleanup(map);
+    on_cleanup();
 
     return 0;
 }
