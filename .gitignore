@@ -5,7 +5,7 @@ notes.md
 config.mk
 
 # Things too large for git
-/assets/audio/raw
+/raw_audio
 
 # Prerequisites
 *.d
