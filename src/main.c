@@ -1,5 +1,7 @@
 #include <faulty.h>
 
+bool in_debug_mode = false;
+
 Map *map = NULL;
 uint8_t map_id = 0;
 
@@ -60,6 +62,14 @@ void on_cleanup() {
 int main(int argc, char *argv[]) {
     SDL_Event event;
     bool running = true;
+
+    if (argc > 0) {
+        for (int idx = 0; idx < argc; idx++) {
+            if(strncmp(argv[idx], "--debug", 7) == 0) {
+                in_debug_mode = true;
+            }
+        }
+    }
 
     if(on_init() == false) {
         ERROR_PRINT("Failed to initialize game.\n");
