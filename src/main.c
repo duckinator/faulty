@@ -18,8 +18,8 @@ void on_loop() {
     // ...
 }
 
-void on_render() {
-    render_map(renderer, map);
+bool on_render() {
+    return render_map(renderer, map);
 }
 
 
@@ -91,7 +91,10 @@ int main(int argc, char *argv[]) {
         }
 
         on_loop(map);
-        on_render(map);
+        if (on_render(map) == false) {
+            ERROR_PRINT("failed to render, exiting.\n");
+            break;
+        }
 
         SDL_Delay(200); // Avoid 100% CPU usage.
     }
