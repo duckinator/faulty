@@ -21,14 +21,23 @@ SRCFILES := $(shell find 'src' -name '*.c')
 
 # ===== Flags =====
 
-SDL2_CFLAGS  := $(shell sdl2-config --cflags)
-SDL2_LDFLAGS := $(shell sdl2-config --static-libs)
+LINUX_SDL2_CFLAGS  := $(shell ${SDL2_CONFIG} --cflags)
+LINUX_SDL2_LDFLAGS := $(shell ${SDL2_CONFIG} --static-libs)
+
+WINDOWS_SDL2_CFLAGS := $(shell ${WINDOWS_SDL2_CONFIG} --cflags)
+WINDOWS_SDL2_LDFLAGS := $(shell ${WINDOWS_SDL2_CONFIG} --static-libs)
 
 # TODO: Figure out if these are correct. I copypasta'd them from https://github.com/duckinator/dux/blob/main/Makefile
 #       and removed things that were clearly specific to operating systems.
-override COMPILER_FLAGS += -std=c99 -Wall -g -Iinclude -Wextra -Wunused -Wformat=2 -Winit-self -Wmissing-include-dirs -Wstrict-overflow=4 -Wfloat-equal -Wwrite-strings -Wconversion -Wundef -Wtrigraphs -Wunused-parameter -Wunknown-pragmas -Wcast-align -Wswitch-enum -Waggregate-return -Wmissing-noreturn -Wmissing-format-attribute -Wpacked -Wredundant-decls -Wunreachable-code -Winline -Winvalid-pch -Wdisabled-optimization -Wbad-function-cast -Wunused-function -Werror=implicit-function-declaration -gdwarf-2 -pedantic-errors ${SDL2_CFLAGS}
+override COMPILER_FLAGS += -std=c99 -Wall -g -Iinclude -Wextra -Wunused -Wformat=2 -Winit-self -Wmissing-include-dirs -Wstrict-overflow=4 -Wfloat-equal -Wwrite-strings -Wconversion -Wundef -Wtrigraphs -Wunused-parameter -Wunknown-pragmas -Wcast-align -Wswitch-enum -Waggregate-return -Wmissing-noreturn -Wmissing-format-attribute -Wpacked -Wredundant-decls -Wunreachable-code -Winline -Winvalid-pch -Wdisabled-optimization -Wbad-function-cast -Wunused-function -Werror=implicit-function-declaration -gdwarf-2 -pedantic-errors
 
 override LINKER_FLAGS += ${SDL2_LDFLAGS}
+
+LINUX_COMPILER_FLAGS := ${COMPILER_FLAGS} ${LINUX_SDL2_CFLAGS}
+LINUX_LINKER_FLAGS   := ${LINKER_FLAGS} ${LINUX_SDL2_LDFLAGS}
+
+WINDOWS_COMPILER_FLAGS := ${COMPILER_FLAGS} ${WINDOWS_SDL2_CFLAGS}
+WINDOWS_LINKER_FLAGS   := ${LINKER_FLAGS} ${WINDOWS_SDL2_LDFLAGS}
 
 # ===== Targets =====
 
@@ -42,13 +51,13 @@ prereqs: config.mk
 linux: prereqs ${LINUX_EXE}
 
 ${LINUX_EXE}:
-	${CC} ${COMPILER_FLAGS} ${LINKER_FLAGS} ${SRCFILES} -o ${LINUX_EXE}
+	${CC} ${LINUX_COMPILER_FLAGS} ${LINUX_LINKER_FLAGS} ${SRCFILES} -o ${LINUX_EXE}
 
 windows: prereqs ${WINDOWS_EXE}
 
 # BROKEN
 ${WINDOWS_EXE}:
-	${WINDOWS_CC} ${COMPILER_FLAGS} ${LINKER_FLAGS} ${SRCFILES} -o ${WINDOWS_EXE}
+	${WINDOWS_CC} ${WINDOWS_COMPILER_FLAGS} ${WINDOWS_LINKER_FLAGS} ${SRCFILES} -o ${WINDOWS_EXE}
 
 
 config.mk:
