@@ -16,10 +16,9 @@ bool clear_map(Map *map) {
 
 Map *new_map() {
     Map *map = malloc(sizeof(Map));
-    memset(map, 0, sizeof(Map));
-
     map->tiles = malloc(sizeof(Tile) * TILES_PER_MAP);
-//    memset(map->tiles, 0, sizeof(Tile) * TILES_PER_MAP);
+
+    clear_map(map);
 
     return map;
 }
