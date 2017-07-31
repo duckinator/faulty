@@ -8,7 +8,7 @@ static SDL_Window *window = NULL;
 // ===== Gameplay events. =====
 
 void on_event(SDL_Event event) {
-    printf("Event type: %i\n", event.type);
+    DEBUG_PRINTF("Event type: %i\n", event.type)
 }
 
 void on_loop() {
@@ -16,7 +16,7 @@ void on_loop() {
 }
 
 void on_render() {
-    // ...
+    render_map(map, window);
 }
 
 
@@ -31,6 +31,7 @@ bool on_init() {
                               SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 
     if (window == NULL) {
+        ERROR_PRINT("window is null.\n");
         return false;
     }
 
@@ -39,7 +40,7 @@ bool on_init() {
     Map *map = malloc(sizeof(Map));
 
     if (map == NULL) {
-        fprintf(stderr, "malloc(): failed to allocate memory for map.");
+        ERROR_PRINT("Failed to allocate memory for map.\n");
         return false;
     }
 
@@ -59,7 +60,7 @@ int main(int argc, char *argv[]) {
     bool running = true;
 
     if(on_init() == false) {
-        fprintf(stderr, "on_init(): failed to initialize game; exiting.");
+        ERROR_PRINT("Failed to initialize game.\n");
         on_cleanup();
         return -1;
     }
@@ -67,6 +68,7 @@ int main(int argc, char *argv[]) {
     while (running) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
+                DEBUG_PRINT("Received SDL_QUIT.");
                 running = false;
                 break;
             }
