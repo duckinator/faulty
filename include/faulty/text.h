@@ -13,6 +13,6 @@ extern bool in_debug_mode;
 
 #define ERROR_PRINT(str) ERROR_PRINTF("%s", str)
 
-#define SDL_ERROR_PRINT() ERROR_PRINTF("%s", SDL_GetError())
+#define SDL_ERROR_PRINT() ERROR_PRINTF("%s\n", SDL_GetError())
 
 #endif

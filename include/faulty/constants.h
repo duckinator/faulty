@@ -2,6 +2,7 @@
 #define FAULTY_CONSTANTS_H
 
 #define MAP_DIR "./maps/"
+#define TILES_DIR "./tiles/"
 
 #define MAP_WIDTH  40
 #define MAP_HEIGHT 40

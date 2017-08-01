@@ -1,7 +1,7 @@
 #include <faulty.h>
 
 SDL_Texture *load_texture(SDL_Renderer *renderer, uint8_t texture_id) {
-    char *file_path = get_path_for_file(MAP_DIR, texture_id, ".bmp");
+    char *file_path = get_path_for_file(TILES_DIR, texture_id, ".bmp");
     SDL_Texture *texture = NULL;
     SDL_Surface *surface = SDL_LoadBMP(file_path);
 
@@ -62,9 +62,7 @@ bool render_map(SDL_Renderer *renderer, Map *map) {
             uint32_t tile_x = row * (uint32_t)TILE_SIZE;
             uint32_t tile_y = col * (uint32_t)TILE_SIZE;
 
-            printf("a\n");
             SDL_Texture *texture = load_texture(renderer, tile->tile_id);
-            printf("b\n");
             render_texture(renderer, texture, tile_x, tile_y);
         }
     }
