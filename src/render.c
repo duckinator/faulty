@@ -67,5 +67,7 @@ bool render_map(SDL_Renderer *renderer, Map *map) {
         }
     }
 
+    SDL_RenderPresent(renderer);
+
     return true;
 }
