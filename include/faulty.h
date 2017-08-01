@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <string.h>
 
+#include <faulty/helpers.h>
 #include <faulty/text.h>
 #include <faulty/constants.h>
 #include <faulty/tile.h>

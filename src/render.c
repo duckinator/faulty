@@ -1,5 +1,27 @@
 #include <faulty.h>
 
+SDL_Texture *load_texture(SDL_Renderer *renderer, uint8_t texture_id) {
+    char *file_path = get_path_for_file(MAP_DIR, texture_id);
+    SDL_Texture *texture = NULL;
+    SDL_Surface *surface = SDL_LoadBMP(file_path);
+
+    if(surface == NULL){
+        // TODO: pass failure up the call stack.
+        SDL_ERROR_PRINT();
+        SDL_FreeSurface(surface);
+        surface = NULL;
+    } else {
+        texture = SDL_CreateTextureFromSurface(renderer, surface);
+        SDL_FreeSurface(surface); /* surface is no longer needed. */
+        surface = NULL; /* Reset the pointer. */
+        if(texture == NULL){
+            SDL_ERROR_PRINT();
+        }
+    }
+
+    return texture;
+}
+
 bool render_map(SDL_Renderer *renderer, Map *map) {
     if (map == NULL) {
         ERROR_PRINT("map is null.\n");

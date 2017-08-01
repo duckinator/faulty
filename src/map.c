@@ -24,12 +24,7 @@ Map *new_map() {
 }
 
 bool load_map(Map *map, uint8_t map_id) {
-    // ASSUMPTION: map_id length is 3 characters max, because it's a uint8_t.
-    //             If map_id's type is changed, that value changes, too.
-    size_t file_name_max_length = strlen(MAP_DIR) + 3 /* map_id length */ + 4 /* .txt */;
-    char *file_path = malloc(file_name_max_length);
-    memset(file_path, 0, file_name_max_length);
-    snprintf(file_path, file_name_max_length, "%s%hhu.txt", MAP_DIR, map_id);
+    char *file_path = get_path_for_file(MAP_DIR, map_id);
 
     Tile *tile = NULL;
 
