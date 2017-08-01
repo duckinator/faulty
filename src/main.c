@@ -40,7 +40,7 @@ bool on_init() {
 
     // Set up map.
     map_id = 0;
-    Map *map = new_map();
+    map = new_map();
 
     if (map == NULL) {
         ERROR_PRINT("Failed to allocate memory for map.\n");
