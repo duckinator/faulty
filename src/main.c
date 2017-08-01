@@ -32,9 +32,15 @@ bool on_init() {
 
     window = SDL_CreateWindow("Faulty", SDL_WINDOWPOS_UNDEFINED,
                               SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
-
     if (window == NULL) {
         ERROR_PRINT("window is null.\n");
+        return false;
+    }
+
+    renderer = SDL_CreateRenderer(window, -1,
+                    SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC);
+    if (renderer == NULL) {
+        SDL_ERROR_PRINT();
         return false;
     }
 
