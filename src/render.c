@@ -22,6 +22,19 @@ SDL_Texture *load_texture(SDL_Renderer *renderer, uint8_t texture_id) {
     return texture;
 }
 
+void render_texture (SDL_Renderer *renderer, SDL_Texture *texture, int x, int y)
+{
+    /* dest is a structure defining a rectangle at x, y that's w pixels wide
+     * and h pixels tall. */
+    SDL_Rect dest;
+    dest.x = x;
+    dest.y = y;
+
+    SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
+    SDL_RenderCopy(renderer, texture, NULL, &dest);
+}
+
+
 bool render_map(SDL_Renderer *renderer, Map *map) {
     if (map == NULL) {
         ERROR_PRINT("map is null.\n");
