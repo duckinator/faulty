@@ -24,7 +24,7 @@ Map *new_map() {
 }
 
 bool load_map(Map *map, uint8_t map_id) {
-    char *file_path = get_path_for_file(MAP_DIR, map_id);
+    char *file_path = get_path_for_file(MAP_DIR, map_id, ".txt");
 
     Tile *tile = NULL;
 
