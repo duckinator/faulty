@@ -59,8 +59,8 @@ bool render_map(SDL_Renderer *renderer, Map *map) {
 
             // lol why the hell does it assume TILE_SIZE, a number literal,
             // is a signed int when nothing around it treats it as one?!
-            uint32_t tile_x = row * (uint32_t)TILE_SIZE;
-            uint32_t tile_y = col * (uint32_t)TILE_SIZE;
+            uint32_t tile_x = col * (uint32_t)TILE_SIZE;
+            uint32_t tile_y = row * (uint32_t)TILE_SIZE;
 
             SDL_Texture *texture = load_texture(renderer, tile->tile_id);
             render_texture(renderer, texture, tile_x, tile_y);
