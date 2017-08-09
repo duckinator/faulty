@@ -36,6 +36,8 @@ bool load_map(Map *map, uint8_t map_id) {
 
     FILE *file_handle = fopen(file_path, "r");
 
+    free(file_path);
+
     if(file_handle == NULL) {
         return false;
     }

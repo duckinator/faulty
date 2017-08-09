@@ -5,6 +5,8 @@ SDL_Texture *load_texture(SDL_Renderer *renderer, uint8_t texture_id) {
     SDL_Texture *texture = NULL;
     SDL_Surface *surface = SDL_LoadBMP(file_path);
 
+    free(file_path);
+
     if(surface == NULL){
         // TODO: pass failure up the call stack.
         SDL_ERROR_PRINT();
