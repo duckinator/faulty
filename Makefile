@@ -8,8 +8,11 @@ include config.mk
 
 FILE_NAME=faulty
 
-# Be careful with what you set this to -- it gets rm -rf'd by `make clean`.
+# Be careful with what you set BUILD_DIR to -- it gets rm -rf'd by `make clean`.
 BUILD_DIR=./build
+
+
+VALGRIND_DIR=./valgrind
 
 LINUX_BUILD_DIR=${BUILD_DIR}/linux-x86_64
 WINDOWS_BUILD_DIR=${BUILD_DIR}/windows-x86_64
@@ -65,6 +68,9 @@ config.mk:
 	@printf "Before compiling, copy config.mk.dist to config.mk and edit it if necessary.\n"
 	@false
 
+valgrind: all
+	valgrind --log-file=${VALGRIND_DIR}/valgrind.log --leak-check=full --show-leak-kinds=all --suppressions=./${VALGRIND_DIR}/faulty.supp ${LINUX_EXE}
+
 test:
 	@echo "lol just kidding"
 
@@ -74,4 +80,4 @@ clean:
 	@rm -rf ${BUILD_DIR}
 	@rm -rf release
 
-.PHONY: all linux windows clean test todo
+.PHONY: all linux windows clean test todo valgrind
