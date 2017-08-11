@@ -21,6 +21,7 @@ Build requirements:
 * GCC
 * SDL 2
 * GCC cross-compiler setup, if you're building for Windows from Linux
+* Cross-compiled SDL2, if you're building for Windows from Linux
 
 ### Native Linux builds
 
@@ -32,15 +33,10 @@ $ make linux
 ### Windows builds, from Linux
 
 Cross-compiling for Windows requires a mingw cross-compiling toolchain,
-and you can (kind of) test it using Wine.
-
-First, install `yaourt` (or equivalent), then:
+and it should run fine in Wine.
 
 ```
-$ yaourt -S base-devel sdl2 wine mingw-w64 mingw-w64-sdl2 mingw-w64-sdl2_gfx mingw-w64-sdl2_image mingw-w64-sdl2_mixer mingw-w64-sdl2_net
-``
-
-There's also an `mingw-w64-sdl2_ttf`, but hopefully that's not needed
-because it has a circular dependency.
-
-
+$ sudo pacman -S base-devel sdl2 wine mingw-w64
+$ pacaur -S mingw-w64-sdl2 # mingw-w64-sdl2 is from the AUR.
+$ make all
+```
