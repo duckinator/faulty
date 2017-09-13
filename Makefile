@@ -1,8 +1,5 @@
-ifdef USE_DEFAULT_MAKE_CONFIG
-include config.mk.dist
-else
-include config.mk
-endif
+FAULTY_MAKE_CONFIG := config.mk
+include ${FAULTY_MAKE_CONFIG}
 
 # ASSUMPTIONS:
 #   1. You are building on 64-bit Manjaro Linux.
@@ -53,7 +50,7 @@ release: all test
 
 all: prereqs linux windows
 
-prereqs: config
+prereqs: ${FAULTY_MAKE_CONFIG}
 	@mkdir -p ${LINUX_BUILD_DIR}
 	@mkdir -p ${WINDOWS_BUILD_DIR}
 
@@ -66,13 +63,6 @@ windows: prereqs ${WINDOWS_EXE}
 
 ${WINDOWS_EXE}:
 	${WINDOWS_CC} ${COMPILER_FLAGS} ${LINKER_FLAGS} ${SRCFILES} -o ${WINDOWS_EXE} ${WINDOWS_SDL2_CFLAGS} ${WINDOWS_SDL2_LDFLAGS} --static
-
-# Fuck literally everything.
-ifdef USE_DEFAULT_MAKE_CONFIG
-config: config.mk.dist
-else
-config: config.mk
-endif
 
 config.mk:
 	@printf "Before compiling, copy config.mk.dist to config.mk and edit it if necessary.\n"
