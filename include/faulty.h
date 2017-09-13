@@ -1,7 +1,7 @@
 #ifndef FAULTY_H
 #define FAULTY_H
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 #include <stdio.h>
 #include <stdbool.h>
