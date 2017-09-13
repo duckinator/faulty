@@ -5,13 +5,12 @@ function fail() {
   exit 1
 }
 
-# Change working directory to the directory this script is in.
-cd "$(dirname "$(realpath $0)")"
-
-PREFIX=$(pwd)
+PREFIX=/usr/local
 TOOLSET=x86_64-w64-mingw32
 export CC="$TOOLSET-gcc -static-libgcc"
 
+TMP_DIR=$(mktemp -d)
+pushd $TMP_DIR
 
 mkdir $PREFIX || fail "Couldn't create $PREFIX directory."
 
@@ -24,3 +23,6 @@ mkdir build-win64 && cd $_ || fail "Couldn't create build-win64 directory."
 
 make || fail "Failed to build cross-compiled SDL for Windows."
 make install || fail "Failed to install cross-compiled SDL for Windows."
+
+popd
+rm -rf $TMP_DIR
