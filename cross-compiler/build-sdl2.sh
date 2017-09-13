@@ -5,6 +5,9 @@ function fail() {
   exit 1
 }
 
+# Change working directory to the directory this script is in.
+cd "$(dirname "$(realpath $0)")"
+
 PREFIX=$(pwd)
 TOOLSET=x86_64-w64-mingw32
 export CC="$TOOLSET-gcc -static-libgcc"
