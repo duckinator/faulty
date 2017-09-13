@@ -12,7 +12,7 @@ ADD https://www.libsdl.org/release/SDL2-devel-2.0.5-mingw.tar.gz /tmp/sdl2-mingw
 # Create destination directories, extract the .tar.gz file, and install it.
 RUN mkdir -p /usr/local/cross-tools/{i686,x86_64}-w64-mingw32 \
     cd /tmp \
-    && tar xf sdl2-mingw.gz \
+    && tar xf sdl2-mingw.tar.gz \
     && make -C SDL-2.0 cross \
     && rm -rf SDL-2.0
 
