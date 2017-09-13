@@ -1,4 +1,4 @@
-FAULTY_MAKE_CONFIG := config.mk
+FAULTY_MAKE_CONFIG ?= config.mk
 include ${FAULTY_MAKE_CONFIG}
 
 # ASSUMPTIONS:
