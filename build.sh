@@ -16,5 +16,5 @@ else
     docker build . -t "${REPONAME}"
 fi
 
-docker run --rm -it ${MOUNTS} -u $(id -u) "${REPONAME}" clean all
+docker run --rm -it ${MOUNTS} -u $(id -u) "${REPONAME}" "$@"
 
