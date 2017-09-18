@@ -28,11 +28,9 @@ bool load_map(Map *map, uint8_t map_id) {
 
     Tile *tile = NULL;
 
-    printf("wat\n");
     if (clear_map(map) == false) {
         return false;
     }
-    printf("fuck you\n");
 
     FILE *file_handle = fopen(file_path, "r");
 
