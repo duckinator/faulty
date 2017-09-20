@@ -10,33 +10,9 @@ Linux: install SDL2, then run the `faulty` executable.
 
 ## Building
 
-All of the build instructions assume you're using Manjaro Linux.
+1. Install Docker.
+2. Run `make`.
 
-They'll probably work on any ArchLinux-based distro, but I haven't
-confirmed that.
+It handles creating an image capable of generating builds for all platforms, and only does so when necessary.
 
-Build requirements:
-
-* GNU Make
-* GCC
-* SDL 2
-* GCC cross-compiler setup, if you're building for Windows from Linux
-* Cross-compiled SDL2, if you're building for Windows from Linux
-
-### Native Linux builds
-
-```
-$ sudo pacman -S base-devel sdl2
-$ make linux
-```
-
-### Windows builds, from Linux
-
-Cross-compiling for Windows requires a mingw cross-compiling toolchain,
-and it should run fine in Wine.
-
-```
-$ sudo pacman -S base-devel sdl2 wine mingw-w64
-$ pacaur -S mingw-w64-sdl2 # mingw-w64-sdl2 is from the AUR.
-$ make all
-```
+Any arguments you pass to `make` outside of Docker are passed through.
