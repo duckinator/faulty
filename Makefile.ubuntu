@@ -2,8 +2,9 @@ FAULTY_MAKE_CONFIG ?= config.mk
 include ${FAULTY_MAKE_CONFIG}
 
 # ASSUMPTIONS:
-#   1. You are building on 64-bit Manjaro Linux.
+#   1. You are building on 64-bit Ubuntu.
 #   2. You are building only for 64-bit Linux and 64-bit Windows.
+#   3. You have proper build systems for both Linux and Windows.
 
 # ===== Configuration =====
 

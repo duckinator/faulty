@@ -11,7 +11,8 @@ Linux: install SDL2, then run the `faulty` executable.
 ## Building
 
 1. Install Docker.
-2. Run `make`.
+2. Install GNU Make.
+2. Run `make` (or `gmake`).
 
 It handles creating an image capable of generating builds for all platforms, and only does so when necessary.
 
