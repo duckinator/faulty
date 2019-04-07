@@ -4,7 +4,7 @@ set -e
 
 REPONAME="faulty-builder"
 TAG="latest"
-MOUNTS="-v $(pwd):/tmp/build -w /tmp/build"
+MOUNTS="-v $(pwd)/..:/tmp/build -w /tmp/build"
 
 image=$(docker images --format "{{.Repository}}\t{{.Tag}}\t{{.CreatedAt}}" "${REPONAME}:${TAG}")
 

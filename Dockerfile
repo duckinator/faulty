@@ -17,4 +17,4 @@ RUN mkdir -p /usr/local/cross-tools/i686-w64-mingw32 \
     && make -C SDL2-2.0.5 cross \
     && rm -rf SDL2-2.0.5
 
-ENTRYPOINT ["make","--makefile=Makefile.ubuntu"]
+ENTRYPOINT ["make"]
