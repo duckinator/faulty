@@ -104,14 +104,12 @@ func load_scene(new_scene_path):
 	
 	return get_tree().change_scene(new_scene_path)
 
-func load_level(level, should_spawn_player=false):
+func load_level(level):
 	Game.playing = true
 	var err = load_scene(get_level_scene(level))
 	if err:
 		Console.error("load_level(): Could not load level " + str(level) + ". (Error " + str(err) + ".)")
 	set_current_level(level)
-	if should_spawn_player:
-		call_deferred("spawn_player")
 
 func spawn_scene(asset, pos=null, rot=null):
 	var scene = load("res://" + asset + ".tscn")
@@ -123,15 +121,6 @@ func spawn_scene(asset, pos=null, rot=null):
 	if rot != null:
 		scene_instance.rotation = rot
 	return scene_instance
-
-func find_spawn_point(scene):
-	var spawns = []
-	if scene.has_node("Spawns"):
-		for node in scene.get_node("Spawns").get_children():
-			spawns.push_back(node)
-	else:
-		Console.error("Couldn't find a spawn point!")
-	return spawns[rand_range(0, len(spawns))]
 
 func get_player(scene=null):
 	if scene == null:
@@ -145,12 +134,10 @@ func get_player(scene=null):
 func spawn_player(scene=null):
 	if scene == null:
 		scene = get_tree().current_scene
-	var spawn = find_spawn_point(scene)
 	var player = get_player(scene)
 	if player == null:
-		Console.error("spawn_player(): couldn't find or create player entity.")
-	player.translation = spawn.translation
-	player.rotation = spawn.rotation
+		Console.error("spawn_player(): couldn't find player entity.")
+		return
 
 func focus_first_control(node):
 	for child in node.get_children():
