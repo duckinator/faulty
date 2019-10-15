@@ -1,0 +1,27 @@
+# Allow compute credits usage for collaborators and anything pushed to the
+# master, staging, and trying branches. (So bors can use them.)
+use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true' || $CIRRUS_BRANCH == 'master' || $CIRRUS_BRANCH == 'staging' || $CIRRUS_BRANCH == 'trying'
+
+test_task:
+  container:
+    image: duckinator/godot-builder:latest
+  install_script:
+    - make ci-setup
+  script:
+    - make test
+
+#release_task:
+#  only_if: $BRANCH == 'master'
+#  depends_on:
+#    - test
+#  env:
+#    BUTLER_API_KEY: ENCRYPTED[46a314af5ccb389fce4671b233802ae05d7f554aaa0a13102c6d908b8b824416c4308cfb61c7271a3bb8e25b0463f23d]
+#  container:
+#    image: duckinator/godot-builder:latest
+#  install_script:
+#    - make ci-setup
+#  script:
+#    - make release
+#    - butler push build/linux duckinator/faulty:linux
+#    - butler push build/windows duckinator/faulty:windows
+#    - butler push build/mac duckinator/faulty:mac
