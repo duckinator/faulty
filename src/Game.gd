@@ -1,5 +1,8 @@
 extends Node
 
+const FIRST_LEVEL = 1
+const LAST_LEVEL = 1 # TODO: Detect this automatically?
+
 const DEFAULT_MOUSE_SENSITIVITY = 20
 const DEFAULT_JOYPAD_SENSITIVITY = 20
 const DEFAULT_FIELD_OF_VIEW = 90
