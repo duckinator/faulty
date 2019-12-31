@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 20, 2, 15 )
+
+[sub_resource type="OpenSimplexNoise" id=2]
+persistence = 1.0
+lacunarity = 4.0
+
+[sub_resource type="NoiseTexture" id=3]
+width = 1024
+height = 1024
+as_normalmap = true
+bump_strength = 32.0
+noise = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.372549, 0.176471, 0.176471, 1 )
+metallic = 0.2
+normal_enabled = true
+normal_scale = 16.0
+normal_texture = SubResource( 3 )
+transmission_enabled = true
+transmission = Color( 0.027451, 0.160784, 0.0588235, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=5]
+points = PoolVector3Array( -10, 1, 7.5, 10, 1, -7.5, 10, 1, 7.5, -10, 1, -7.5, -10, -1, 7.5, 10, -1, -7.5, 10, -1, 7.5, -10, -1, -7.5, 10, 1, 7.5, -10, 1, -7.5, 10, 1, -7.5, -10, 1, 7.5, 10, -1, 7.5, -10, -1, -7.5, 10, -1, -7.5, -10, -1, 7.5, 10, 1, 7.5, -10, -1, 7.5, -10, 1, 7.5, 10, -1, 7.5, 10, 1, -7.5, -10, -1, -7.5, -10, 1, -7.5, 10, -1, -7.5 )
+
+[node name="Platform" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
+shape = SubResource( 5 )

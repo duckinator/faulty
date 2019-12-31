@@ -6,10 +6,10 @@ const LOW_JUMP_MULTIPLIER = 1.5
 const MASS = 100
 
 var gravity
-const MAX_SPEED = 35
-const JUMP_SPEED = 10
+const MAX_SPEED = 80
+const JUMP_SPEED = 22
 const ACCEL = 7
-const DEACCEL = 16
+const DEACCEL = 10
 const MAX_SLOPE_ANGLE = 40
 
 var MOUSE_SENSITIVITY = 0
@@ -135,10 +135,11 @@ func process_movement(delta):
 	
 	vel += Vector3(delta * gravity.x, delta * gravity.y, delta * gravity.z)
 	
-	if vel.y < 0:
-		vel += Vector3.UP * gravity.y * (FALL_MULTIPLIER - 1) * delta
-	elif (vel.y > 0) and not Input.is_action_pressed("movement_jump"):
-		vel += Vector3.UP * gravity.y * (LOW_JUMP_MULTIPLIER - 1) * delta
+	#if vel.y < 0:
+	#	vel += Vector3.UP * gravity.y * (FALL_MULTIPLIER - 1) * delta
+	#elif (vel.y > 0) and not Input.is_action_pressed("movement_jump"):
+	#	vel += Vector3.UP * gravity.y * (LOW_JUMP_MULTIPLIER - 1) * delta
+	vel += (Vector3.UP * gravity.y * delta) * 2
 	
 	var hvel = vel
 	hvel.y = 0

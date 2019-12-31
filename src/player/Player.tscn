@@ -36,7 +36,7 @@ far = 550.0
 
 [node name="DummyRigidBody" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
-mass = 30.0
+mass = 50.0
 
 [node name="MeshInstance" type="MeshInstance" parent="DummyRigidBody"]
 mesh = SubResource( 3 )
