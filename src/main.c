@@ -14,11 +14,13 @@ void on_event(SDL_Event event) {
     DEBUG_PRINTF("Event type: %i\n", event.type);
 }
 
-void on_loop() {
+void on_loop(SDL_Renderer *renderer, Map *map) {
     // ...
+    (void)renderer;
+    (void)map;
 }
 
-bool on_render() {
+bool on_render(SDL_Renderer *renderer, Map *map) {
     return render_map(renderer, map);
 }
 
@@ -96,8 +98,8 @@ int main(int argc, char *argv[]) {
             on_event(event);
         }
 
-        on_loop(map);
-        if (on_render(map) == false) {
+        on_loop(renderer, map);
+        if (on_render(renderer, map) == false) {
             ERROR_PRINT("failed to render, exiting.\n");
             break;
         }

@@ -59,8 +59,8 @@ bool render_map(SDL_Renderer *renderer, Map *map) {
                 continue;
             }
 
-            uint32_t tile_x = col * (uint32_t)TILE_SIZE;
-            uint32_t tile_y = row * (uint32_t)TILE_SIZE;
+            int tile_x = col * TILE_SIZE;
+            int tile_y = row * TILE_SIZE;
 
             SDL_Texture *texture = load_texture(renderer, tile->tile_id);
             render_texture(renderer, texture, tile_x, tile_y);

@@ -7,8 +7,8 @@ bool clear_map(Map *map) {
     }
 
     for (uint32_t idx = 0; idx < TILES_PER_MAP; idx++) {
-        map->tiles[idx].tile_id = -1;
-        map->tiles[idx].tile_type = -1;
+        map->tiles[idx].tile_id = 0;
+        map->tiles[idx].tile_type = 0;
     }
 
     return true;

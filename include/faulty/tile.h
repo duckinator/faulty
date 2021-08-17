@@ -1,5 +1,7 @@
-#ifndef FAULT_TILE_H
+#ifndef FAULTY_TILE_H
 #define FAULTY_TILE_H
+
+#include <stdint.h>
 
 enum {
     TILE_TYPE_NONE = 0,
